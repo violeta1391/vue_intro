@@ -8,13 +8,26 @@ const app = new Vue({
             {nombre: 'brocoli', cantidad: 0},
             {nombre: 'espinaca', cantidad:30}
         ],
-        nuevaVerdura:' '
+        nuevaVerduraNombre:' ',
+        nuevaVerduraCantidad:' ',
+        total: 0 
     },
     methods: {
         agregarVerdura() {
             this.verduras.push({
-                nombre: this.nuevaVerdura, cantidad: 0
+                nombre: this.nuevaVerduraNombre, cantidad: this.nuevaVerduraCantidad
             })
+            this.nuevaVerduraNombre= ' ',
+            this.nuevaVerduraCantidad= ' '
+        }
+    },
+    computed: {
+        sumarVerduras() {
+            this.total = 0;
+            for(verdura of this.verduras){
+                this.total = this.total + verdura.cantidad;
+            }
+            return this.total
         }
     }
 }) 

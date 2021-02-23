@@ -16,16 +16,29 @@
        
         <ul>
             <li v-for="verdura of verduras">
-                {{verdura.nombre}}
+                {{verdura.nombre}} - {{verdura.cantidad}}
                 <span v-if="verdura.cantidad === 0"> - Sin stock</span>
-            </li>
-            
-            
+            </li>     
         </ul>
 
-        <input type="text" v-model="nuevaVerdura">
+        <input type="text" v-model="nuevaVerduraNombre" @keyup.enter=agregarVerdura>
+        <input type="text" v-model="nuevaVerduraCantidad" @keyup.enter=agregarVerdura>
         <button v-on:click="agregarVerdura">Agregar</button>
         <button @click="agregarVerdura">Agregar</button>
+
+
+        <div>
+            <ul>
+                <li v-for="verdura of verduras">
+                    <input type="number" v-model.number="verdura.cantidad" @keyup.enter=agregarVerdura>
+                    {{verdura.nombre}}
+                    <span v-if="verdura.cantidad === 0"> - Sin stock</span>
+                    <button @click="verdura.cantidad++"> + </button>                
+                </li>     
+            </ul>
+            <h4>Total: {{sumarVerduras}}</h4>
+        </div>
+  
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
