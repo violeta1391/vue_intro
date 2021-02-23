@@ -7,6 +7,14 @@ const app = new Vue({
             {nombre: 'lechuga', cantidad:10},
             {nombre: 'brocoli', cantidad: 0},
             {nombre: 'espinaca', cantidad:30}
-        ]
+        ],
+        nuevaVerdura:' '
+    },
+    methods: {
+        agregarVerdura() {
+            this.verduras.push({
+                nombre: this.nuevaVerdura, cantidad: 0
+            })
+        }
     }
 }) 
