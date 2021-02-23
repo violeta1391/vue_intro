@@ -9,10 +9,12 @@ const app = new Vue({
             { nombre: 'espinaca', cantidad: 30 }
         ],
         nuevaVerduraNombre: ' ',
-        nuevaVerduraCantidad: ' ',
+        nuevaVerduraCantidad: 0,
         total: 0,
         fondo: 'bg-warning',
-        color: false
+        color: false,
+        mensaje: 'Hola soy Violeta',
+        contador: 0
     },
     methods: {
         agregarVerdura() {
@@ -20,7 +22,7 @@ const app = new Vue({
                 nombre: this.nuevaVerduraNombre, cantidad: this.nuevaVerduraCantidad
             })
             this.nuevaVerduraNombre = ' ',
-                this.nuevaVerduraCantidad = ' '
+                this.nuevaVerduraCantidad = 0
         }
     },
     computed: {
@@ -30,6 +32,16 @@ const app = new Vue({
                 this.total = this.total + verdura.cantidad;
             }
             return this.total
+        },
+        invertido(){
+            return this.mensaje.split('').reverse().join('')
+        },
+        colores(){
+            return{
+                'bg-success' : this.contador <= 10,
+                'bg-warning' : this.contador > 10 && this.contador <20,
+                'bg-danger' : this.contador > 20,
+            }
         }
     }
 }) 

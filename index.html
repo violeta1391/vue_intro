@@ -13,25 +13,27 @@
 
     <div id="app" class="container-fluid mt-5">
 
-        <div>
+        <div class="p-3 m-2">
             <h1>{{titulo}}</h1>
 
             <ul>
                 <li v-for="fruta of frutas">{{fruta}}</li>
             </ul>
 
-            <ul>
-                <li v-for="verdura of verduras">
-                    {{verdura.nombre}} - {{verdura.cantidad}}
-                    <span v-if="verdura.cantidad === 0"> - Sin stock</span>
-                </li>
-            </ul>
+            <div>
+                <ul>
+                    <li v-for="verdura of verduras">
+                        {{verdura.nombre}} - {{verdura.cantidad}}
+                        <span v-if="verdura.cantidad === 0"> - Sin stock</span>
+                    </li>
+                </ul>
 
-            <input type="text" v-model="nuevaVerduraNombre" @keyup.enter=agregarVerdura>
-            <input type="text" v-model="nuevaVerduraCantidad" @keyup.enter=agregarVerdura>
-            <button v-on:click="agregarVerdura">Agregar</button>
-            <button @click="agregarVerdura">Agregar</button>
+                <input type="text" v-model="nuevaVerduraNombre" @keyup.enter=agregarVerdura>
+                <input type="number" v-model="nuevaVerduraCantidad" @keyup.enter=agregarVerdura>
+                <button class="btn btn-primary" v-on:click="agregarVerdura">Agregar</button>
+            </div>
 
+            <br>
 
             <div>
                 <ul>
@@ -39,7 +41,7 @@
                         <input type="number" v-model.number="verdura.cantidad" @keyup.enter=agregarVerdura>
                         {{verdura.nombre}}
                         <span v-if="verdura.cantidad === 0"> - Sin stock</span>
-                        <button @click="verdura.cantidad++"> + </button>
+                        <button class="btn btn-primary" @click="verdura.cantidad++"> + </button>
                     </li>
                 </ul>
                 <h4>Total: {{sumarVerduras}}</h4>
@@ -61,7 +63,7 @@
                     software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
 
-            <div :class="['m-3', 'p-3', fondo]">
+            <div :class="['m-4', 'p-3', fondo]">
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
                     and
@@ -75,7 +77,7 @@
                 <input type="text" class="form-control my-3" v-model="fondo" @keyup.enter=fondo>
             </div>
 
-            <div class="text-center text-white p-3" :class="{'bg-info' : color, 'bg-success': !color}">
+            <div class="text-center text-white p-3 m-5" :class="{'bg-info' : color, 'bg-success': !color}">
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
                     and
@@ -87,6 +89,23 @@
                     publishing
                     software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 <button class="btn btn-primary" @click="color =!color"> Cambiar </button>
+            </div>
+
+
+            <div class="p-4 m-5 text-center bg-dark text-white">
+                <h3>{{mensaje}}</h3>
+                <h3>invertido: {{invertido}}</h3>
+                <input type="text" class="form-control my-3" v-model="mensaje" @keyup.enter=mensaje>
+                <button class="btn btn-danger" @click="contador--"> - </button>
+                <button class="btn btn-primary" @click="contador++"> + </button>
+                <br>
+                <div class="progress my-4">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                    :style="{'width': contador+'%'}" 
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
+                    :class="colores"
+                    >{{contador}}%</div>
+                </div>
             </div>
 
 
