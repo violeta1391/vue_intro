@@ -14,7 +14,9 @@ const app = new Vue({
         fondo: 'bg-warning',
         color: false,
         mensaje: 'Hola soy Violeta',
-        contador: 0
+        contador: 0,
+        saludo: 'Soy ciclo de vida de vue'
+
     },
     methods: {
         agregarVerdura() {
@@ -23,6 +25,9 @@ const app = new Vue({
             })
             this.nuevaVerduraNombre = ' ',
                 this.nuevaVerduraCantidad = 0
+        },
+        destruir(){
+            this.$destroy();
         }
     },
     computed: {
@@ -43,5 +48,29 @@ const app = new Vue({
                 'bg-danger' : this.contador > 20,
             }
         }
+    },
+    beforeCreate(){
+        console.log('beforeCreate')
+    },
+    created(){
+        console.log('created')
+    },
+    beforeMount(){
+        console.log('beforeMount')
+    },
+    mounted(){
+        console.log('mounted')
+    },
+    beforeUpdate(){
+        console.log('beforeUpdate')
+    },
+    updated(){
+        console.log('updated')
+    },
+    beforeDestroy(){
+        console.log('beforeDestroy')
+    },
+    destroyed(){
+        console.log('destroyed')
     }
 }) 
