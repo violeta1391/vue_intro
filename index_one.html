@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Vue!</title>
+</head>
+
+<body>
+
+    <div id="script" class="container-fluid mt-5">
+
+        <div class="p-3 m-2">
+            <h1>{{titulo}}</h1>
+
+            <ul>
+                <li v-for="fruta of frutas">{{fruta}}</li>
+            </ul>
+
+            <div>
+                <ul>
+                    <li v-for="verdura of verduras">
+                        {{verdura.nombre}} - {{verdura.cantidad}}
+                        <span v-if="verdura.cantidad === 0"> - Sin stock</span>
+                    </li>
+                </ul>
+
+                <input type="text" v-model="nuevaVerduraNombre" @keyup.enter=agregarVerdura>
+                <input type="number" v-model="nuevaVerduraCantidad" @keyup.enter=agregarVerdura>
+                <button class="btn btn-primary" v-on:click="agregarVerdura">Agregar</button>
+            </div>
+
+            <br>
+
+            <div>
+                <ul>
+                    <li v-for="verdura of verduras">
+                        <input type="number" v-model.number="verdura.cantidad" @keyup.enter=agregarVerdura>
+                        {{verdura.nombre}}
+                        <span v-if="verdura.cantidad === 0"> - Sin stock</span>
+                        <button class="btn btn-primary" @click="verdura.cantidad++"> + </button>
+                    </li>
+                </ul>
+                <h4>Total: {{sumarVerduras}}</h4>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="bg-danger text-center text-white" :class="'m-3 p-3'">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap
+                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                    the
+                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+
+            <div :class="['m-4', 'p-3', fondo]">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap
+                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                    the
+                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <input type="text" class="form-control my-3" v-model="fondo" @keyup.enter=fondo>
+            </div>
+
+            <div class="text-center text-white p-3 m-5" :class="{'bg-info' : color, 'bg-success': !color}">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap
+                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                    the
+                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <button class="btn btn-primary" @click="color =!color"> Cambiar </button>
+            </div>
+
+
+            <div class="p-4 m-5 text-center bg-dark text-white">
+                <h3>{{mensaje}}</h3>
+                <h3>invertido: {{invertido}}</h3>
+                <input type="text" class="form-control my-3" v-model="mensaje" @keyup.enter=mensaje>
+                <button class="btn btn-danger" @click="contador--"> - </button>
+                <button class="btn btn-primary" @click="contador++"> + </button>
+                <br>
+                <div class="progress my-4">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                    :style="{'width': contador+'%'}" 
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
+                    :class="colores"
+                    >{{contador}}%</div>
+                </div>
+            </div>
+
+            <div class="p-4 m-5 text-center bg-info text-white">
+                <h3>{{saludo}}</h3>
+                <button class="btn btn-primary" @click="saludo = 'saludo cambiado'"> Cambiar </button>
+                <button class="btn btn-danger" @click="destruir()"> Destruir </button>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="app_one.js"></script>
+</body>
+
+</html>

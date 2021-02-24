@@ -1,5 +1,5 @@
-const app = new Vue({
-    el: '#app',
+const script = new Vue({
+    el: '#script',
     data: {
         titulo: "Hola mundo!",
         frutas: ['manzana', 'pera', 'frutilla'],
