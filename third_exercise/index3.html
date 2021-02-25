@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"></script>
 
-    <title>VueX_1</title>
+    <title>VueX_3</title>
 </head>
 
 <body>
@@ -28,10 +28,13 @@
             template:
                 `
                 <div class="p-4 m-5 text-center bg-dark text-white">
-                <h1>numero {{$store.state.numero}}</h1> 
+                <h1>numero {{numero}}</h1> 
                 <hijo></hijo>
                 </div>                
-                `
+                `,
+            computed: {
+                ...Vuex.mapState(['numero'])
+            }
         })
 
         Vue.component('hijo', {
