@@ -28,12 +28,15 @@
             template:
                 `
                 <div class="p-4 m-5 text-center bg-dark text-white">
-                <h1>numero {{numero}}</h1> 
+                <h1>Numero: {{numero}}</h1> 
                 <hijo></hijo>
                 </div>                
                 `,
             computed: {
                 ...Vuex.mapState(['numero'])
+            },
+            methods: {
+                ...Vuex.mapMutations(['aumentar'])
             }
         })
 
@@ -41,9 +44,17 @@
             template:
                 `
                 <div class="p-4 m-5 text-center bg-white text-dark">
-                <button class="btn btn-primary" @click="$store.commit('aumentar')"> + </button>                 
+                <button class="btn btn-danger" @click="disminuir(2)"> - </button> 
+                <button class="btn btn-success" @click="aumentar"> + </button> 
+                <h1>{{numero}}</h1>                
                 </div>                
-                `
+                `,
+            computed: {
+                ...Vuex.mapState(['numero'])
+            },
+            methods: {
+                ...Vuex.mapMutations(['aumentar', 'disminuir'])
+            }
         })
 
         const store = new Vuex.Store({
@@ -51,14 +62,17 @@
                 numero: 10
             },
             mutations: {
-                aumentar(){
-                    this.state.numero ++
+                aumentar() {
+                    this.state.numero++
                 },
-                aumentando(state){
-                    state.numero ++
+                aumentando(state) {
+                    state.numero++
+                },
+                disminuir(state, n) {
+                    state.numero -= n
                 }
             }
-            
+
         })
 
         const app = new Vue({
